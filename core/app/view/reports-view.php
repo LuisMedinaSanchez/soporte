@@ -140,14 +140,14 @@ if($_GET["status_id"]!=""||$_GET["project_id"]!="" ||$_GET["priority_id"]!="" ||
 			<table class="table table-bordered table-hover">
 			<thead>
 
-
+                        <th>Folio</th>
 			<th>Asunto</th>
 			<th>Proyecto</th>
 			<th>Tipo</th>
-			<th>Categoria</th>
+			<th>Sistema</th>
 			<th>Prioridad</th>
 			<th>Estado</th>
-			<th>Fecha</th>
+			<th>Fecha de creacion</th>
 			<th>Ultima Actualizacion</th>
 
 
@@ -159,6 +159,7 @@ if($_GET["status_id"]!=""||$_GET["project_id"]!="" ||$_GET["priority_id"]!="" ||
 				$medic = $user->getPriority();
 				?>
 				<tr>
+                                <td><?php echo $user->id; ?></td>
 				<td><?php echo $user->title; ?></td>
 				<td><?php echo $project->name; ?></td>
 				<td><?php echo $user->getKind()->name; ?></td>

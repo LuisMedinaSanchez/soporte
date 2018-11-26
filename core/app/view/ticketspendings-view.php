@@ -14,7 +14,7 @@
 
 
         <div class="card">
-            <div class="card-header" data-background-color="blue">
+            <div class="card-header" data-background-color="red">
                 <h4 class="title"><i class="fa fa-clock-o"></i> Tickets pendientes</h4>
             </div>
             <div class="card-content table-responsive">
@@ -26,7 +26,7 @@
                     $user_id = UserData::getAll();
                     ?>
 
-                    <div class="form-group">
+<!--                    <div class="form-group">
                         <div class="col-lg-2">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-search"></i></span>
@@ -99,13 +99,13 @@ if (isset($_GET["date_at"]) && $_GET["date_at"] != "") {
                             <button class="btn btn-primary btn-block">Buscar</button>
                         </div>
 
-                    </div>
+                    </div>-->
                 </form>
 
                 <?php
                 $users = array();
                 if ((isset($_GET["q"]) && isset($_GET["project_id"]) && isset($_GET["category_id"]) && isset($_GET["date_at"])) && ($_GET["q"] != "" || $_GET["project_id"] != "" || $_GET["category_id"] != "" || $_GET["date_at"] != "")) {
-                    $sql = "select * from ticket where ";
+                    $sql = "select * from ticket where status_id = 1 and ";
                     if ($_GET["q"] != "") {
                         $sql .= " (title like '%$_GET[q]%' or description like '%$_GET[q]%') ";
                     }
@@ -142,7 +142,7 @@ if (isset($_GET["date_at"]) && $_GET["date_at"] != "") {
 
                     $users = TicketData::getBySQL($sql);
                 } else {
-                    $users = TicketData::getAll();
+                    $users = TicketData::getAllPendings();
                 }
                 if (count($users) > 0) {
                     // si hay usuarios
@@ -153,7 +153,6 @@ if (isset($_GET["date_at"]) && $_GET["date_at"] != "") {
                         <th>Asunto</th>
                         <th>Proyecto</th>
                         <th>Prioridad</th>
-                        <th>Estado</th>
                         <th>Fecha</th>
                         <th></th>
                         </thead>
@@ -163,14 +162,13 @@ if (isset($_GET["date_at"]) && $_GET["date_at"] != "") {
         $medic = $user->getPriority();
         ?>
                             <tr>
-                                <td><a href="#"># <?php echo $user->id; ?></a></td>
+                                <td><a href="index?view=historyticket&id=<?php echo $user->id; ?>"># <?php echo $user->id; ?></a></td>
                                 <td><?php echo $user->title; ?></td>
                                 <td><?php echo $project->name; ?></td>
                                 <td><?php echo $medic->name; ?></td>
-                                <td><?php echo $user->getStatus()->name; ?></td>
                                 <td><?php echo $user->created_at; ?></td>
                                 <td style="width:180px;">
-                                    <a href="index.php?view=editticket&id=<?php echo $user->id; ?>" class="btn btn-warning btn-xs">Editar</a>
+                                    <a href="index?view=editticket&id=<?php echo $user->id; ?>" class="btn btn-warning btn-xs">Editar</a>
 <!--                                    <a href="index.php?action=delticket&id=<?php echo $user->id; ?>" class="btn btn-danger btn-xs">Eliminar</a>-->
                                 </td>
                             </tr>
@@ -182,7 +180,7 @@ if (isset($_GET["date_at"]) && $_GET["date_at"] != "") {
             </div>
     <?php
 } else {
-    echo "<p class='alert alert-danger'>No hay projectes</p>";
+    echo "<p class='alert alert-danger'>No hay tickets</p>";
 }
 ?>
 

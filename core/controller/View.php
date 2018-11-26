@@ -1,7 +1,4 @@
 <?php
-
-
-// 13 de Abril del 2014
 // View.php
 // @brief Una vista corresponde a cada componente visual dentro de un modulo.
 
@@ -30,7 +27,7 @@ class View {
 			}
 				include $url;				
 			}else{
-				View::Error("<b>404 NOT FOUND</b> View <b>".$_GET['view']."</b> folder !! - <a href='http://evilnapsis.com/legobox/help/' target='_blank'>Help</a>");
+				View::Error("404 PAGINA NO ENCONTRADA AL INTENTAR MOSTRAR <b>".$_GET['view']."</b> - <a href='mailto:soporte@transpheric.com' target='_blank'>Enviar correo a sistemas</a>");
 			}
 
 

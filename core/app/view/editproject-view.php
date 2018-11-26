@@ -7,7 +7,7 @@
       <h4 class="title">Editar Proyecto</h4>
   </div>
   <div class="card-content table-responsive">
-		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=updateproject" role="form">
+		<form class="form-horizontal" method="post" id="addproduct" action="index?view=updateproject" role="form">
   <div class="form-group">
     <label for="inputEmail1" class="col-lg-2 control-label">Nombre*</label>
     <div class="col-md-6">

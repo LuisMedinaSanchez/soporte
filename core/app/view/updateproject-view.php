@@ -6,7 +6,7 @@ if(count($_POST)>0){
 	$user->update();
 
 Core::alert("Actualizado exitosamente!");
-print "<script>window.location='index.php?view=projects';</script>";
+print "<script>window.location='index?view=projects';</script>";
 
 
 }

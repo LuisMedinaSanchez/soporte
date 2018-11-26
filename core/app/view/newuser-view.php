@@ -6,7 +6,7 @@
   </div>
   <div class="card-content table-responsive">
 
-		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=adduser" role="form">
+		<form class="form-horizontal" method="post" id="addproduct" action="index?view=adduser" role="form">
 
 
   <div class="form-group">

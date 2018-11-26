@@ -12,8 +12,8 @@ class ProjectData {
 
 
 	public function add(){
-		$sql = "insert into ".self::$tablename." (name) ";
-		$sql .= "value (\"$this->name\")";
+		$sql = "insert into ".self::$tablename." (name,description) ";
+		$sql .= "value (\"$this->name\",\"$this->description\")";
 		Executor::doit($sql);
 	}
 

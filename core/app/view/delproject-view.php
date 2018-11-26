@@ -2,6 +2,6 @@
 
 $client = ProjectData::getById($_GET["id"]);
 $client->del();
-Core::redir("./index.php?view=projects");
+Core::redir("./index?view=projects");
 
 ?>

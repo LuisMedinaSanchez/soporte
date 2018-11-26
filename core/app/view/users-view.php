@@ -8,7 +8,7 @@
   <div class="card-content table-responsive">
 
 
-	<a href="index.php?view=newuser" class="btn btn-default"><i class='fa fa-user'></i> Nuevo Usuario</a>
+	<a href="index?view=newuser" class="btn btn-default"><i class='fa fa-user'></i> Nuevo Usuario</a>
 <br>
 		<?php
 		/*
@@ -61,8 +61,8 @@
 					<?php endif; ?>
 				</td>
 				<td style="width:180px;">
-				<a href="index.php?view=edituser&id=<?php echo $user->id;?>" class="btn btn-warning btn-xs">Editar</a>
-<a href="index.php?action=deluser&id=<?php echo $user->id;?>" class="btn btn-danger btn-xs">Eliminar</a>
+				<a href="index?view=edituser&id=<?php echo $user->id;?>" class="btn btn-warning btn-xs">Editar</a>
+<a href="index?action=deluser&id=<?php echo $user->id;?>" class="btn btn-danger btn-xs">Eliminar</a>
 				</td>
 				</tr>
 				<?php

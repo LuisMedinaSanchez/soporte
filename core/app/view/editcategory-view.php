@@ -8,7 +8,7 @@
   <div class="card-content table-responsive">
 
 
-		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=updatecategory" role="form">
+		<form class="form-horizontal" method="post" id="addproduct" action="index?view=updatecategory" role="form">
 
 
   <div class="form-group">

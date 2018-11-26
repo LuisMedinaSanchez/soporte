@@ -25,13 +25,13 @@ if($found==true) {
 //	setcookie('userid',$userid);
 //	print $_SESSION['userid'];
 	print "Cargando ... $user";
-	print "<script>window.location='index.php?view=home';</script>";
+	print "<script>window.location='index?view=home';</script>";
 }else {
-	print "<script>window.location='index.php?view=login';</script>";
+	print "<script>window.location='index?view=login';</script>";
 }
 
 }else{
-	print "<script>window.location='index.php?view=home';</script>";
+	print "<script>window.location='index?view=home';</script>";
 	
 }
 ?>

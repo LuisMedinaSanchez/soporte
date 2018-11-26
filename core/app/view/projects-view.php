@@ -27,6 +27,7 @@
 			<table class="table table-bordered table-hover">
 			<thead>
 			<th>Nombre</th>
+                        <th>Descripción</th>
 			<th></th>
 			</thead>
 			<?php
@@ -34,9 +35,10 @@
 				?>
 				<tr>
 				<td><?php echo $user->name; ?></td>
-				<td style="width:280px;">
-				<a href="index.php?view=editproject&id=<?php echo $user->id;?>" class="btn btn-warning btn-xs">Editar</a>
-				<a href="index.php?view=delproject&id=<?php echo $user->id;?>" class="btn btn-danger btn-xs">Eliminar</a>
+                                <td><?php echo $user->description; ?></td>
+				<td style="width:280px  ;">
+				<a href="index?view=editproject&id=<?php echo $user->id;?>" class="btn btn-warning btn-xs">Editar</a>
+				<a href="index?view=delproject&id=<?php echo $user->id;?>" class="btn btn-danger btn-xs">Eliminar</a>
 				</td>
 				</tr>
 				<?php

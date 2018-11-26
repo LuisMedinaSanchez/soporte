@@ -2,10 +2,10 @@
 	<div class="col-md-12">
 <div class="card">
   <div class="card-header" data-background-color="blue">
-      <h4 class="title">Categorias</h4>
+      <h4 class="title">Sistemas</h4>
   </div>
   <div class="card-content table-responsive">
-	<a href="index.php?view=newcategory" class="btn btn-default"><i class='fa fa-th-list'></i> Nueva Categoria</a>
+	<a href="index?view=newcategory" class="btn btn-default"><i class='fa fa-th-list'></i> Nuevo sistemas</a>
 
 		<?php
 
