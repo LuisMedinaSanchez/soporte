@@ -1,3 +1,9 @@
+<?php //Con esto sacamos a personas indeseadas :P
+if (Session::issetUID()) {
+    
+} else {
+    print "<script>window.location='index?view=login';</script>";
+} ?>
 <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div  class="card card-stats">
