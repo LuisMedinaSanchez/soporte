@@ -5,6 +5,30 @@ $medics = PriorityData::getAll();
 $statuses = StatusData::getAll();
 $payments = KindData::getAll();
 $conexion = mysqli_connect("localhost", "root", "", "soporte");
+$sql2 = "SELECT 
+t.title                 AS  TIT_TIC,
+t.created_at		AS  FEC_TIC,
+t.description           AS  DES_TIC,
+h.description           AS  DES_HIS,
+h.created_at            AS  FEC_HIS,
+h.user_id               AS  ID_TEC,
+u.name                  AS  NOM_TEC,
+u.lastname              AS  APE_TEC,
+u.email                 AS  MAI_TEC,
+p.name			AS  NOM_PER,
+p.lastname		AS  APE_PER,
+p.email			AS  MAI_PER,
+s.name                  AS  EST_TIC,
+h.evidenciahistory_id   AS  EVI_TIC
+FROM tickethistory      h
+RIGHT OUTER JOIN user   u ON u.id = h.user_id
+RIGHT OUTER JOIN ticket t ON t.id = h.ticket_id
+RIGHT OUTER JOIN person	p ON p.id = t.person_id
+RIGHT OUTER JOIN status	s ON s.id = t.status_id
+WHERE h.ticket_id = $reservation->id
+ORDER BY h.created_at DESC";
+                        $resultado2 = mysqli_query($conexion, $sql2);
+                        $mostrar2 = mysqli_fetch_array($resultado2)
 ?>
 <div class="card">
     <div class="card-header" data-background-color="blue">
@@ -14,7 +38,7 @@ $conexion = mysqli_connect("localhost", "root", "", "soporte");
         <div class="form-group">
             <div class="col-lg-1"></div>
             <div class="col-lg-3">
-                <input type="text" required name='description' id="description" placeholder="Descripcion">
+                <textarea type="text" required name='description' id="description" placeholder="Descripcion"></textarea>
             </div>
             <div class="col-lg-2">
                 <button>Tomar evidencia<input class="btn btn-default"  id="evidenciahistory_id" accept="image/*" name='evidenciahistory_id' type="file" title="Foto"></button>
@@ -38,14 +62,14 @@ $conexion = mysqli_connect("localhost", "root", "", "soporte");
     </form>
     <div class="card-content table-responsive">
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel panel-body">
                 <div class="panel-body">
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                         <h4><?php echo $reservation->title; ?></h4>
                         <p><?php echo $reservation->description; ?></p>
                         <a></a>
                     </div>
-                    <div class="col-md-3"><?php echo " " . $reservation->created_at; ?></div>
+                    <div class="col-md-4"><?php echo " " . $reservation->created_at."<br> Creado por: ". $mostrar2['NOM_TEC']." ". $mostrar2['APE_TEC']."<br>Solicitado por: ".$mostrar2['NOM_PER']." ".$mostrar2['APE_PER']; ?></div>
                     <div class="col-md-2"><a href="<?php echo $reservation->evidencia_id; ?>" target=”_blank”><img width="20" src="<?php echo $reservation->evidencia_id; ?>"/></a></div>
                 </div>
                 <table class="table table-responsive text-left">
@@ -59,26 +83,36 @@ $conexion = mysqli_connect("localhost", "root", "", "soporte");
                     <tbody>
                         <?php
                         $sql = "SELECT 
-                            h.description   AS  DESCRIPCION,
-                            h.user_id,
-                            u.name          AS  NOMBRE,
-                            u.lastname      AS  APELLIDO,
-                            h.created_at    AS  FECHA,
-                            h.evidenciahistory_id   AS EVIDENCIA
-                            FROM tickethistory h
-                            RIGHT OUTER JOIN user u ON u.id = h.user_id
-                            RIGHT OUTER JOIN ticket t ON t.id = h.ticket_id
-                            WHERE ticket_id = $reservation->id
-                            ORDER BY h.created_at DESC    ";
+t.title                 AS  TIT_TIC,
+t.created_at		AS  FEC_TIC,
+t.description           AS  DES_TIC,
+h.description           AS  DES_HIS,
+h.created_at            AS  FEC_HIS,
+h.user_id               AS  ID_TEC,
+u.name                  AS  NOM_TEC,
+u.lastname              AS  APE_TEC,
+u.email                 AS  MAI_TEC,
+p.name			AS  NOM_PER,
+p.lastname		AS  APE_PER,
+p.email			AS  MAI_PER,
+s.name                  AS  EST_TIC,
+h.evidenciahistory_id   AS  EVI_TIC
+FROM tickethistory      h
+RIGHT OUTER JOIN user   u ON u.id = h.user_id
+RIGHT OUTER JOIN ticket t ON t.id = h.ticket_id
+RIGHT OUTER JOIN person	p ON p.id = t.person_id
+RIGHT OUTER JOIN status	s ON s.id = t.status_id
+WHERE h.ticket_id = $reservation->id
+ORDER BY h.created_at DESC";
                         $resultado = mysqli_query($conexion, $sql);
                         while ($mostrar = mysqli_fetch_array($resultado)) {
                             ?>
                             <tr>
                                 <td>
-                                    <div class="col-md-10"><?php echo "<strong>" . $mostrar['NOMBRE'] . " " . $mostrar['APELLIDO'] . "</strong>" . " " . $mostrar['FECHA'] . "<br>" . $mostrar['DESCRIPCION'] ?>
+                                    <div class="col-md-10"><?php echo "<strong>" . $mostrar['NOM_TEC'] . " " . $mostrar['APE_TEC'] . "</strong>" . " " . $mostrar['FEC_HIS'] . "<br>" . $mostrar['DES_HIS'] ?>
                                     </div>
                                 
-                                    <div class="col-md-2"><a href="<?php echo $mostrar['EVIDENCIA']; ?>" target=”_blank”><img width="10" height="10" src="<?php echo $mostrar['EVIDENCIA']; ?>" ></a>
+                                    <div class="col-md-2"><a href="<?php echo $mostrar['EVI_TIC']; ?>" target=”_blank”><img width="10" height="10" src="<?php echo $mostrar['EVI_TIC']; ?>" ></a>
                                     </div>
                                 </td>
                             </tr>
