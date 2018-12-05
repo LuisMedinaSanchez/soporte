@@ -175,7 +175,7 @@ create table ticket(
 	priority_id int not null default 1,
     	status_id int not null default 1,
 	person_id int,
-    	evidencia_id varchar(100),
+    	evidencia_id varchar(255),
 	foreign key (kind_id) references kind(id),
 	foreign key (user_id) references user(id),
 	foreign key (project_id) references project(id),
@@ -191,7 +191,7 @@ create table tickethistory(
 	description text,
 	created_at datetime,
 	user_id int not null,
-    	evidenciahistory_id varchar(100),
+    	evidenciahistory_id varchar(255),
 	foreign key (user_id) references user(id),
 	foreign key (user_id) references user(id)
 	);
