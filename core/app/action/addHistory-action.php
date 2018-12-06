@@ -125,6 +125,9 @@ ORDER BY FEC_HIS DESC    ";
         "<br>"
         ."Registrado el:"." ".$fec_his."
          <br>
+         <br>
+         Para ver el historial completo has click <a href='http://transpheric.sytes.net:81/soporte/index?view=historyticketview&id=".$r->ticket_id."'>aqui</a>
+         <br>
         <br>
         Cualquier duda o comentario, puede responder este correo.
         <br>

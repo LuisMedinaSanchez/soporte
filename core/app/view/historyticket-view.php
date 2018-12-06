@@ -38,7 +38,7 @@ ORDER BY h.created_at DESC";
         <div class="form-group">
             <div class="col-lg-1"></div>
             <div class="col-lg-3">
-                <textarea type="text" required name='description' id="description" placeholder="Descripcion"></textarea>
+                <textarea type="text" rows="2" class="form-control" required name='description' id="description" placeholder="Descripcion"></textarea>
             </div>
             <div class="col-lg-2">
                 <button>Tomar evidencia<input class="btn btn-default"  id="evidenciahistory_id" accept="image/*" name='evidenciahistory_id' type="file" title="Foto"></button>
