@@ -18,6 +18,30 @@ value ("admin","Luis","Medina","soporte@transpheric.com",sha1(md5("admin")),1,1,
       ("soportetoluca","Enrique","Urbina","soportetoluca@transpheric.com",sha1(md5("LUms5847")),1,1,NOW());
 
 
+create table user_rol (
+	id int not null auto_increment primary key,
+	rol_name varchar(100),
+	rol_updated datetime,
+	rol_status int
+	);
+
+
+create table user_rules (
+	id int not null auto_increment primary key,
+	rules_str varchar(150),
+	rules_name varchar(150),
+	rules_status int
+	);
+
+
+create table user_permissions (
+	id int not null auto_increment primary key,
+	rol_id int,
+	rules_id int,
+	permissions_updated datetime,
+	permissions_status int
+	);
+
 
 create table person (
 	id int not null auto_increment primary key,
@@ -148,7 +172,7 @@ create table status (
 	name varchar(100)
 	);
 insert into status (id,name)
-values (1,"Pendiente"), (2,"En Desarrollo"),(3,"Terminado"),(4,"Cancelado");
+values (1,"Pendiente"),(50,"En Desarrollo"),(75,"Solicitados para cierre"),(100,"Terminado"),(101,"Cancelado");
 
 
 

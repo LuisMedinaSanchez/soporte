@@ -3,29 +3,13 @@
 
 <div class="card">
   <div class="card-header" data-background-color="blue">
-      <h4 class="title">Usuarios</h4>
+      <h4 class="title">Perfiles</h4>
   </div>
   <div class="card-content table-responsive">
 
 
-	<a href="index?view=newuser" class="btn btn-default"><i class='fa fa-user'></i> Nuevo Usuario</a>
+	<a href="index?view=newuser" class="btn btn-default"><i class='fa fa-user'></i> Nuevo Perfil</a>
 <br>
-		<?php
-		/*
-		$u = new UserData();
-		print_r($u);
-		$u->name = "Agustin";
-		$u->lastname = "Ramos";
-		$u->email = "evilnapsis@gmail.com";
-		$u->password = sha1(md5("l00lapal00za"));
-		$u->add();
-
-
-		$f = $u->createForm();
-		print_r($f);
-		echo $f->label("name")." ".$f->render("name");
-		*/
-		?>
 		<?php
 
 		$users = UserData::getAll();

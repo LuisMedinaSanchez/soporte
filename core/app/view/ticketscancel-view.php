@@ -168,8 +168,8 @@ if (isset($_GET["date_at"]) && $_GET["date_at"] != "") {
                                 <td><?php echo $medic->name; ?></td>
                                 <td><?php echo $user->created_at; ?></td>
                                 <td style="width:180px;">
-                                    <a href="index.php?view=editticket&id=<?php echo $user->id; ?>" class="btn btn-warning btn-xs">Editar</a>
-<!--                                    <a href="index.php?action=delticket&id=<?php echo $user->id; ?>" class="btn btn-danger btn-xs">Eliminar</a>-->
+                                    <a href="index?view=editticket&id=<?php echo $user->id; ?>" class="btn btn-warning btn-xs">Editar ticket</a>
+                                    <a href="index?view=closeticket&id=<?php echo $user->id; ?>" class="btn btn-group-vertical">Solicitar cierre</a>
                                 </td>
                             </tr>
                 <?php

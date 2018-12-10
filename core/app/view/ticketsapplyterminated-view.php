@@ -14,8 +14,8 @@
 
 
         <div class="card">
-            <div class="card-header" data-background-color="orange">
-                <h4 class="title"><i class="fa fa-wrench"></i> Tickets en desarrollo</h4>
+            <div class="card-header" data-background-color="gray">
+                <h4 class="title"><i class="fa fa-check-circle"></i> Tickets con solicitud de cierre</h4>
             </div>
             <div class="card-content table-responsive">
                 <form class="form-horizontal" role="form">
@@ -105,7 +105,7 @@ if (isset($_GET["date_at"]) && $_GET["date_at"] != "") {
                 <?php
                 $users = array();
                 if ((isset($_GET["q"]) && isset($_GET["project_id"]) && isset($_GET["category_id"]) && isset($_GET["date_at"])) && ($_GET["q"] != "" || $_GET["project_id"] != "" || $_GET["category_id"] != "" || $_GET["date_at"] != "")) {
-                    $sql = "select * from ticket where status_id = 2 and ";
+                    $sql = "select * from ticket where status_id = 3 and ";
                     if ($_GET["q"] != "") {
                         $sql .= " (title like '%$_GET[q]%' or description like '%$_GET[q]%') ";
                     }
@@ -142,7 +142,7 @@ if (isset($_GET["date_at"]) && $_GET["date_at"] != "") {
 
                     $users = TicketData::getBySQL($sql);
                 } else {
-                    $users = TicketData::getAllDeveloping();
+                    $users = TicketData::getAllApply();
                 }
                 if (count($users) > 0) {
                     // si hay usuarios
@@ -154,7 +154,7 @@ if (isset($_GET["date_at"]) && $_GET["date_at"] != "") {
                         <th>Proyecto</th>
                         <th>Prioridad</th>
                         <th>Fecha</th>
-                        <th></th>
+<!--                        <th></th>-->
                         </thead>
     <?php
     foreach ($users as $user) {
@@ -162,15 +162,14 @@ if (isset($_GET["date_at"]) && $_GET["date_at"] != "") {
         $medic = $user->getPriority();
         ?>
                             <tr>
-                                <td><a href="index?view=historyticket&id=<?php echo $user->id; ?>"># <?php echo $user->id; ?></a></td>
+                                <td><a href="index?view=historyticketview&id=<?php echo $user->id; ?>"># <?php echo $user->id; ?></a></td>
                                 <td><?php echo $user->title; ?></td>
                                 <td><?php echo $project->name; ?></td>
                                 <td><?php echo $medic->name; ?></td>
                                 <td><?php echo $user->created_at; ?></td>
-                                <td style="width:180px;">
-                                    <a href="index?view=editticket&id=<?php echo $user->id; ?>" class="btn btn-warning btn-xs">Editar ticket</a>
-                                    <a href="index?view=closeticket&id=<?php echo $user->id; ?>" class="btn btn-group-vertical">Solicitar cierre</a>
-                                </td>
+<!--                                <td style="width:180px;">
+                                    <a href="index?view=closeticket&id=<?php echo $user->id; ?>" class="btn btn-group-vertical">Reenviar correo</a>
+                                </td>-->
                             </tr>
                 <?php
             }

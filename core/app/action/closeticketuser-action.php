@@ -9,48 +9,12 @@ $conexion = mysqli_connect("localhost", "root", "", "soporte");
 $r = new TicketData();
 
 $r->ticket_id = $_POST["id"];
-$r->description = $_POST["description"];
-$r->user_id = $_SESSION["user_id"];
-$r->user_id = $_SESSION["user_id"];
-$r->status_id = "50";
+$r->status_id = "100";
 
-//SUBIMOS LA EVIDENCIA DEL HISTORICO--------------------------------------------
-$nom_evidenciahistory_id = $_FILES['evidenciahistory_id']['name'];
-$tip_evidenciahistory_id = $_FILES['evidenciahistory_id']['type'];
-$tam_evidenciahistory_id = $_FILES['evidenciahistory_id']['size'];
-
-$carpeta_existe = $_SERVER['DOCUMENT_ROOT'] . '/Soporte/evidencias/'.sha1(md5($r->ticket_id)).'/';
-if(!is_dir($carpeta_existe))
-{ 
-$carpeta_crear = mkdir($_SERVER['DOCUMENT_ROOT'] . '/Soporte/evidencias/'.sha1(md5($r->ticket_id)).'/');
-$carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/Soporte/evidencias/'.sha1(md5($r->ticket_id)).'/';
-$carpeta_remoto = 'evidencias/'.sha1(md5($r->ticket_id)).'/';
-move_uploaded_file($_FILES['evidenciahistory_id']['tmp_name'],$carpeta_destino.$nom_evidenciahistory_id);
-//SI NO VIENE EVIDENCIA MANDAMOS UN VALOR NULO
-if (!empty($nom_evidenciahistory_id)) {
-    $r->evidenciahistory_id = $carpeta_remoto . $nom_evidenciahistory_id;
-} else {
-    $r->evidenciahistory_id = "evidencias/sinfoto.jpeg";
-}
-}
-else
-{
-
-$carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/Soporte/evidencias/'.sha1(md5($r->ticket_id)).'/';
-$carpeta_remoto = 'evidencias/'.sha1(md5($r->ticket_id)).'/';
-move_uploaded_file($_FILES['evidenciahistory_id']['tmp_name'],$carpeta_destino.$nom_evidenciahistory_id);
-//SI NO VIENE EVIDENCIA MANDAMOS UN VALOR NULO
-if (!empty($nom_evidenciahistory_id)) {
-    $r->evidenciahistory_id = $carpeta_remoto . $nom_evidenciahistory_id;
-} else {
-    $r->evidenciahistory_id = "evidencias/sinfoto.jpeg";
-}
-} 
-$r->addHistory();
 
 //ESTATUS AUTOMATICO------------------------------------------------------------
 
-    $r->status_id = "50";
+    $r->status_id = "100";
     $r->update_status_id();
 
 //------------------------------------------------------------------------------
@@ -105,11 +69,11 @@ ORDER BY FEC_HIS DESC    ";
     $mail->addAddress($mai_tec, $nom_tec);                              //direccion y nombre del correo receptor
     $mail->addReplyTo($mai_tec, $nom_tec);                              //responder a
     $mail->isHTML(true);                                                //definir el formato comoHTML
-    $mail->Subject = "ACTUALIZACION A SOLICITUD: ". $tit_tic." - "."FOLIO:"." ".$r->ticket_id;                             //asunto
+    $mail->Subject = "CIERRE DE SOLICITUD: ". $tit_tic." - "."FOLIO:"." ".$r->ticket_id;                             //asunto
     //---------------------------------------Cuerpo del correo------------------------------//
     $mail->Body = $nom_per."
         <br>
-        "."Se reporta avance para la solicitud: ".$tit_tic.
+        "."El ticket se ha cerrado: ".$tit_tic.
         "
         <br>
         Estado del ticket: ".$est_tic."
@@ -138,7 +102,7 @@ ORDER BY FEC_HIS DESC    ";
             echo 'correo no enviado';                           //De no poderse enviar imprimimos que no se pudo enviar
 } else {
 Core::alert("¡Agregado exitosamente y correo enviado!");        //ALERTA DE QUE SE AGREGO EL TICKET
-Core::redir("./index?view=historyticket&id=$r->ticket_id");     //REDIRECCIONAMOS AL HISTORIAL DE TICKETS
+Core::redir("http://transpheric.sytes.net:81/soporte/index?view=historyticketview&id=".$r->ticket_id."");     //REDIRECCIONAMOS AL HISTORIAL DE TICKETS
 }
 mysqli_close($conexion);                                        //cerramos conexion
 ?>

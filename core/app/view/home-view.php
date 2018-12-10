@@ -32,6 +32,19 @@ if (Session::issetUID()) {
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
+            <a href="./?view=ticketsapplyterminated">
+            <div class="card-header" data-background-color="gray">
+                <i class="fa fa-hourglass-half "></i>
+            </div>
+            </a>
+            <div class="card-content">
+                <p class="category">En proceso de cierre</p>
+                <h3 class="title"><?php echo count(TicketData::getAllApply()); ?></h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
             <a href="./?view=ticketsterminated">
                 <div class="card-header" data-background-color="green">
                     <i class="fa fa-check-circle"></i>
@@ -40,19 +53,6 @@ if (Session::issetUID()) {
             <div class="card-content">
                 <p class="category">Terminados</p>
                 <h3 class="title"><?php echo count(TicketData::getAllTerminated()); ?></h3>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-            <a href="./?view=projects">
-            <div class="card-header" data-background-color="blue">
-                <i class="fa fa-flask"></i>
-            </div>
-            </a>
-            <div class="card-content">
-                <p class="category">Proyectos</p>
-                <h3 class="title"><?php echo count(ProjectData::getAll()); ?></h3>
             </div>
         </div>
     </div>

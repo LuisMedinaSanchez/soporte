@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -19,9 +19,7 @@
             <script src='assets/fullcalendar/moment.min.js'></script>
             <script src='assets/fullcalendar/fullcalendar.min.js'></script>
         <?php endif; ?>
-
     </head>
-
     <body>
         <?php if (isset($_SESSION["user_id"])): ?>
             <div class="wrapper">
@@ -61,22 +59,17 @@
                                     <p>Proyectos</p>
                                 </a>
                             </li>
-                            <li>
-                                <a href="./?view=categories">
-                                    <i class="fa fa-cogs"></i>
-                                    <p>Sistemas</p>
-                                </a>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button"  aria-expanded="true"><i class="fa fa-th-list" ></i>Catalogos<span class="caret"></span></a>
+                                <ul  class="dropdown-menu">
+                                    <li ><a href="./?view=categories"><p><i class="fa fa-cogs" ></i>Sistemas</p></a></li>
+                                    <li ><a href="./?view=person"><p><i class="fa fa-users" ></i>Solicitantes</p></a></li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="./?view=reports">
                                     <i class="fa fa-area-chart"></i>
                                     <p>Reportes</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="./?view=person">
-                                    <i class="fa fa-users"></i>
-                                    <p>Personal</p>
                                 </a>
                             </li>
                         </ul>
@@ -107,11 +100,13 @@
                                             <li class="divider"></li>
                                             <li><a href="./?view=users" ><i class="fa fa-users"></i> Usuarios</a></li>
                                             <li class="divider"></li>
+                                            <li><a href="./?view=usersperfil" ><i class="fa fa-key"></i> Perfiles</a></li>
+                                            <li class="divider"></li>
                                             <li><a href="logout.php"><i class="fa fa-sign-out"></i> Salir</a></li>
                                         </ul>
                                     </li>
                                 </ul>
-                                <!--
+                                <!--    DEJO UN BOTONCITO DE BUSQUEDA POR SI CRESE MUCHO EL PORTAL
                                             <form class="navbar-form navbar-right" role="search">
                                               <div class="form-group  is-empty">
                                                 <input type="text" class="form-control" placeholder="Search">
@@ -146,23 +141,6 @@
                                             Transpheric.com
                                         </a>
                                     </li>
-                                    <!--
-                                          <li>
-                                            <a href="#">
-                                              Company
-                                            </a>
-                                          </li>
-                                          <li>
-                                            <a href="#">
-                                              Portfolio
-                                            </a>
-                                          </li>
-                                          <li>
-                                            <a href="#">
-                                               Blog
-                                            </a>
-                                          </li>
-                                    -->
                                 </ul>
                             </nav>
                             <p class="copyright pull-right">

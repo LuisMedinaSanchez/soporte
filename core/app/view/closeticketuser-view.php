@@ -32,19 +32,19 @@ ORDER BY h.created_at DESC";
 ?>
 <div class="card">
     <div class="card-header" data-background-color="blue">
-        <h3 class="title">Historial del ticket # <?php echo $reservation->id; ?></h3>
+        <h3 class="title">Cierre del ticket # <?php echo $reservation->id; ?></h3>
     </div>
-    <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" action="./?action=addHistory">
+    <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" action="./?action=closeticketuser">
         <div class="form-group">
             <div class="col-lg-1"></div>
-            <div class="col-lg-3">
+<!--            <div class="col-lg-3">
                 <textarea type="text" rows="2" class="form-control" required name='description' id="description" placeholder="Descripcion"></textarea>
             </div>
             <div class="col-lg-2">
                 <button>Tomar evidencia<input class="btn btn-default"  id="evidenciahistory_id" accept="image/*" name='evidenciahistory_id' type="file" title="Foto"></button>
-            </div>    
-            <div class="col-lg-2">
-<!--                <select name="status_id" class="form-control" required>
+            </div>    -->
+<!--            <div class="col-lg-2">
+                <select name="status_id" class="form-control" required>
                     <?php foreach ($statuses as $p): ?>
                         <option value="<?php echo $p->id; ?>" <?php
                         if ($p->id == $reservation->status_id) {
@@ -52,11 +52,11 @@ ORDER BY h.created_at DESC";
                         }
                         ?>><?php echo $p->name; ?></option>
                             <?php endforeach; ?>
-                </select>-->
-            </div>
+                </select>
+            </div>-->
             <div class="col-lg-3">
                 <input type="hidden" name="id" value="<?php echo $reservation->id; ?>">
-                <button type="submit" class="btn btn-primary">Agregar avances</button>
+                <button type="submit" class="btn btn-primary">Cerrar ticket</button>
             </div>
         </div>
     </form>

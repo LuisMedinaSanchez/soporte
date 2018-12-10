@@ -154,7 +154,7 @@ if (isset($_GET["date_at"]) && $_GET["date_at"] != "") {
                         <th>Proyecto</th>
                         <th>Prioridad</th>
                         <th>Fecha</th>
-                        <th></th>
+<!--                        <th></th>-->
                         </thead>
     <?php
     foreach ($users as $user) {
@@ -162,15 +162,15 @@ if (isset($_GET["date_at"]) && $_GET["date_at"] != "") {
         $medic = $user->getPriority();
         ?>
                             <tr>
-                                <td><a href="index?view=historyticket&id=<?php echo $user->id; ?>"># <?php echo $user->id; ?></a></td>
+                                <td><a href="index?view=historyticketview&id=<?php echo $user->id; ?>"># <?php echo $user->id; ?></a></td>
                                 <td><?php echo $user->title; ?></td>
                                 <td><?php echo $project->name; ?></td>
                                 <td><?php echo $medic->name; ?></td>
                                 <td><?php echo $user->created_at; ?></td>
-                                <td style="width:180px;">
-                                    <a href="index.php?view=editticket&id=<?php echo $user->id; ?>" class="btn btn-warning btn-xs">Editar</a>
-<!--                                    <a href="index.php?action=delticket&id=<?php echo $user->id; ?>" class="btn btn-danger btn-xs">Eliminar</a>-->
-                                </td>
+<!--                                <td style="width:180px;">
+                                    <a href="index?view=editticket&id=<?php echo $user->id; ?>" class="btn btn-warning btn-xs">Editar ticket</a>
+                                    <a href="index?view=closeticket&id=<?php echo $user->id; ?>" class="btn btn-group-vertical">Solicitar cierre</a>
+                                </td>-->
                             </tr>
                 <?php
             }

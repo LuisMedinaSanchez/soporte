@@ -10,11 +10,11 @@ $applicant = PersonData::getAll();
     <div class="col-md-12">
 
         <div class="card">
-            <div class="card-header" data-background-color="orange">
-                <h4 class="title">Editar ticket</h4>
+            <div class="card-header" data-background-color="gray">
+                <h4 class="title">¿Enviar solicitud de cierre?</h4>
             </div>
             <div class="card-content table-responsive">
-                <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" action="./?action=updateticket">
+                <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" action="./?action=closeticket">
 
                     <div class="form-group">
                         <label for="inputEmail1" class="col-lg-2 control-label">Tipo</label>
@@ -110,15 +110,14 @@ $applicant = PersonData::getAll();
                             <div class="col-lg-2"></div>
                             <label for="inputEmail1" class="col-lg-2 control-label"><i class="fa fa-camera"></i> Evidencia</label>
                             <div class="col-lg-1"><a href="<?php echo $reservation->evidencia_id; ?>" target=”_blank”><img width="10" height="10" src="<?php echo $reservation->evidencia_id; ?>" ></a></div>
-                            <div class="col-lg-2"><input type="hidden" value="<?php echo $reservation->evidencia_id; ?>" id="evidenciastr" name='evidenciastr'></div>
-                            <div class="col-lg-2"><button>Tomar evidencia<input class="btn btn-default"  id="evidencia" accept="image/*" name='evidencia' type="file" title="Foto"></button></div> 
-                       </div>
+
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
                             <input type="hidden" name="id" value="<?php echo $reservation->id; ?>">
-                            <button type="submit" class="btn btn-default">Guardar cambios</button>
+                            <button type="submit" class="btn btn-default">Solicitar cierre de ticket</button>
                         </div>
                     </div>
                 </form>

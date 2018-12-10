@@ -83,6 +83,11 @@ class TicketData {
         $sql = "update " . self::$tablename . " set category_id=\"$this->category_id\",project_id=\"$this->project_id\",priority_id=\"$this->priority_id\",status_id=\"$this->status_id\",kind_id=\"$this->kind_id\",updated_at=NOW() where id=$this->id";
         Executor::doit($sql);
     }
+    
+    public function close() {
+        $sql = "update " . self::$tablename . " set title=\"$this->title\",description=\"$this->description\",updated_at=NOW(),kind_id=\"$this->kind_id\",project_id=\"$this->project_id\",category_id=\"$this->category_id\",priority_id=\"$this->priority_id\",status_id=\"$this->status_id\",person_id=\"$this->person_id\" where id=$this->id";
+        Executor::doit($sql);
+    }
 
     public static function getById($id) {
         $sql = "select * from " . self::$tablename . " where id=$id";
@@ -114,6 +119,12 @@ class TicketData {
         return Model::many($query[0], new TicketData());
     }
 
+    public static function getAllApply() {
+        $sql = "select * from " . self::$tablename . " where status_id=75";
+        $query = Executor::doit($sql);
+        return Model::many($query[0], new TicketData());
+    }
+    
     public static function getAllPendings() {
         $sql = "select * from " . self::$tablename . " where status_id=1";
         $query = Executor::doit($sql);
@@ -121,19 +132,19 @@ class TicketData {
     }
 
     public static function getAllDeveloping() {
-        $sql = "select * from " . self::$tablename . " where status_id=2";
+        $sql = "select * from " . self::$tablename . " where status_id=50";
         $query = Executor::doit($sql);
         return Model::many($query[0], new TicketData());
     }
 
     public static function getAllTerminated() {
-        $sql = "select * from " . self::$tablename . " where status_id=3";
+        $sql = "select * from " . self::$tablename . " where status_id=100";
         $query = Executor::doit($sql);
         return Model::many($query[0], new TicketData());
     }
 
     public static function getAllCancel() {
-        $sql = "select * from " . self::$tablename . " where status_id=4";
+        $sql = "select * from " . self::$tablename . " where status_id=101";
         $query = Executor::doit($sql);
         return Model::many($query[0], new TicketData());
     }
