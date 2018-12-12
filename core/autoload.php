@@ -1,8 +1,5 @@
 <?php
-/**
-* @author evilnapsis
-* @brief Llama todos los archivos del framework LegoBox
-**/
+
 
 include "controller/Core.php";
 include "controller/View.php";

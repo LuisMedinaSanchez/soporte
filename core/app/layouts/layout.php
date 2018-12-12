@@ -50,8 +50,12 @@
                                     <li class=""><a href="./?view=ticketscancel"><p><i class="fa fa-times-circle" ></i>Cancelados</p></a></li>
                                 </ul>
                             </li>
-
-
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button"  aria-expanded="true"><i class="fa fa-area-chart"></i>Reportes<span class="caret"></span></a>
+                                <ul  class="dropdown-menu">
+                                    <li><a href="./?view=reports"><p><i class="fa fa-clock-o" ></i>Tickets</p></a></li>
+                                    <li><a href="./?view=previo"><p><i class="fa fa-clock-o" ></i>Previos</p></a></li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="./?view=projects">
@@ -66,12 +70,7 @@
                                     <li ><a href="./?view=person"><p><i class="fa fa-users" ></i>Solicitantes</p></a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="./?view=reports">
-                                    <i class="fa fa-area-chart"></i>
-                                    <p>Reportes</p>
-                                </a>
-                            </li>
+<!--                        <li><a href="./?view=reports"><i class="fa fa-area-chart"></i><p>Reportes</p></a></li>-->
                         </ul>
                     </div>
                 </div>

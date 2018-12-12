@@ -40,7 +40,8 @@ RIGHT OUTER JOIN user   u ON u.id = h.user_id
 RIGHT OUTER JOIN ticket t ON t.id = h.ticket_id
 RIGHT OUTER JOIN person	p ON p.id = t.person_id
 RIGHT OUTER JOIN status	s ON s.id = t.status_id
-WHERE t.id = $r->id ";
+WHERE t.id = $r->id
+ORDER BY FEC_HIS DESC         ";
 $conexion = mysqli_connect("localhost", "root", "", "soporte");
     $resultado  = mysqli_query($conexion, $sql);
     $mostrar    = $resultado->fetch_assoc();

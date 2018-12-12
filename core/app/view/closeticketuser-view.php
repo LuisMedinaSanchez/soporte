@@ -56,7 +56,7 @@ ORDER BY h.created_at DESC";
             </div>-->
             <div class="col-lg-3">
                 <input type="hidden" name="id" value="<?php echo $reservation->id; ?>">
-                <button type="submit" class="btn btn-primary">Cerrar ticket</button>
+                <button type="submit" class="btn btn-danger">Cerrar ticket</button>
             </div>
         </div>
     </form>

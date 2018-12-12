@@ -33,20 +33,20 @@ class CategoryData {
 	}
 
 	public static function getById($id){
-		$sql = "select * from ".self::$tablename." where id=$id";
+		$sql = "select * from ".self::$tablename." where id=$id ORDER BY NAME";
 		$query = Executor::doit($sql);
 		return Model::one($query[0],new CategoryData());
 	}
 
 	public static function getAll(){
-		$sql = "select * from ".self::$tablename;
+		$sql = "select * from ".self::$tablename . " ORDER BY NAME";
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new CategoryData());
 
 	}
 	
 	public static function getLike($q){
-		$sql = "select * from ".self::$tablename." where name like '%$q%'";
+		$sql = "select * from ".self::$tablename." where name like '%$q%' ORDER BY NAME";
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new CategoryData());
 	}
