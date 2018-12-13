@@ -135,7 +135,7 @@ ORDER BY FEC_HIS DESC    ";
     $mail->IsHTML(true);
 
         if (!$mail->send()) {
-            echo 'correo no enviado';                           //De no poderse enviar imprimimos que no se pudo enviar
+            echo 'correo no enviado regresar al <a href="./" >inicio</a>';  //De no poderse enviar imprimimos que no se pudo enviar
 } else {
 Core::alert("¡Agregado exitosamente y correo enviado!");        //ALERTA DE QUE SE AGREGO EL TICKET
 Core::redir("./index?view=historyticket&id=$r->ticket_id");     //REDIRECCIONAMOS AL HISTORIAL DE TICKETS

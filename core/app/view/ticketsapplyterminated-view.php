@@ -154,7 +154,7 @@ if (isset($_GET["date_at"]) && $_GET["date_at"] != "") {
                         <th>Proyecto</th>
                         <th>Prioridad</th>
                         <th>Fecha</th>
-<!--                        <th></th>-->
+                        <th></th>
                         </thead>
     <?php
     foreach ($users as $user) {
@@ -167,9 +167,9 @@ if (isset($_GET["date_at"]) && $_GET["date_at"] != "") {
                                 <td><?php echo $project->name; ?></td>
                                 <td><?php echo $medic->name; ?></td>
                                 <td><?php echo $user->created_at; ?></td>
-<!--                                <td style="width:180px;">
-                                    <a href="index?view=closeticket&id=<?php echo $user->id; ?>" class="btn btn-group-vertical">Reenviar correo</a>
-                                </td>-->
+                                <td style="width:180px;">
+                                    <a href="index?view=closeticket2&id=<?php echo $user->id; ?>" class="btn btn-group-vertical">Reenviar correo</a>
+                                </td>
                             </tr>
                 <?php
             }

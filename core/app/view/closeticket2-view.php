@@ -34,7 +34,7 @@ ORDER BY h.created_at DESC";
 ?>
 <div class="card">
     <div class="card-header" data-background-color="gray">
-        <h3 class="title">Solicitud de cierre para el ticket # <?php echo $reservation->id; ?></h3>
+        <h3 class="title">Reenviar solicitud de cierre para el ticket # <?php echo $reservation->id; ?></h3>
     </div>
     <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" action="./?action=closeticket">
         <div class="form-group">

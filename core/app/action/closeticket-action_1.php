@@ -5,56 +5,22 @@ include_once 'core/app/mail/OAuth.php';
 include_once 'core/app/mail/PHPMailer.php';
 include_once 'core/app/mail/SMTP.php';
 $conexion = mysqli_connect("localhost", "root", "", "soporte");
-//CREAMOS EL REGISTRO-----------------------------------------------------------
-$r = new TicketData();
 
-$r->ticket_id = $_POST["id"];
-$r->description = $_POST["description"];
-$r->user_id = $_SESSION["user_id"];
-$r->user_id = $_SESSION["user_id"];
-$r->status_id = "75";
+if (count($_POST) > 0) {
+        $r = TicketData::getById($_POST["id"]);
+        $r->title = $_POST["title"];
+        $r->category_id = $_POST["category_id"];
+        $r->project_id = $_POST["project_id"];
+        $r->person_id = $_POST["person_id"];
+        $r->priority_id = $_POST["priority_id"];
+        $r->description = $_POST["description"];
+        $r->status_id = "75";
+        $r->kind_id = $_POST["kind_id"];
 
-//SUBIMOS LA EVIDENCIA DEL HISTORICO--------------------------------------------
-$nom_evidenciahistory_id = $_FILES['evidenciahistory_id']['name'];
-$tip_evidenciahistory_id = $_FILES['evidenciahistory_id']['type'];
-$tam_evidenciahistory_id = $_FILES['evidenciahistory_id']['size'];
+        $r->close();
+    }
 
-$carpeta_existe = $_SERVER['DOCUMENT_ROOT'] . '/Soporte/evidencias/'.sha1(md5($r->ticket_id)).'/';
-if(!is_dir($carpeta_existe))
-{ 
-$carpeta_crear = mkdir($_SERVER['DOCUMENT_ROOT'] . '/Soporte/evidencias/'.sha1(md5($r->ticket_id)).'/');
-$carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/Soporte/evidencias/'.sha1(md5($r->ticket_id)).'/';
-$carpeta_remoto = 'evidencias/'.sha1(md5($r->ticket_id)).'/';
-move_uploaded_file($_FILES['evidenciahistory_id']['tmp_name'],$carpeta_destino.$nom_evidenciahistory_id);
-//SI NO VIENE EVIDENCIA MANDAMOS UN VALOR NULO
-if (!empty($nom_evidenciahistory_id)) {
-    $r->evidenciahistory_id = $carpeta_remoto . $nom_evidenciahistory_id;
-} else {
-    $r->evidenciahistory_id = "evidencias/sinfoto.jpeg";
-}
-}
-else
-{
-
-$carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/Soporte/evidencias/'.sha1(md5($r->ticket_id)).'/';
-$carpeta_remoto = 'evidencias/'.sha1(md5($r->ticket_id)).'/';
-move_uploaded_file($_FILES['evidenciahistory_id']['tmp_name'],$carpeta_destino.$nom_evidenciahistory_id);
-//SI NO VIENE EVIDENCIA MANDAMOS UN VALOR NULO
-if (!empty($nom_evidenciahistory_id)) {
-    $r->evidenciahistory_id = $carpeta_remoto . $nom_evidenciahistory_id;
-} else {
-    $r->evidenciahistory_id = "evidencias/sinfoto.jpeg";
-}
-} 
-$r->addHistory();
-
-//ESTATUS AUTOMATICO------------------------------------------------------------
-
-    $r->status_id = "75";
-    $r->update_status_id();
-
-
-//ENVIO DE CORREO---------------------------------------------------------------
+    //------------------------------------------------------------------------------
 $sql = "SELECT 
 t.title                 AS  TIT_TIC,
 t.created_at		AS  FEC_TIC,
@@ -74,7 +40,7 @@ RIGHT OUTER JOIN user   u ON u.id = h.user_id
 RIGHT OUTER JOIN ticket t ON t.id = h.ticket_id
 RIGHT OUTER JOIN person	p ON p.id = t.person_id
 RIGHT OUTER JOIN status	s ON s.id = t.status_id
-WHERE t.id = $r->ticket_id
+WHERE t.id = $r->id
 ORDER BY FEC_HIS DESC         ";
 $conexion = mysqli_connect("localhost", "root", "", "soporte");
     $resultado  = mysqli_query($conexion, $sql);
@@ -102,12 +68,12 @@ $conexion = mysqli_connect("localhost", "root", "", "soporte");
     $mail->SMTPAuth = true;
     $mail->Username = 'ticket@transpheric.com';
     $mail->Password = 'SLms5847';
-    $mail->setFrom('ticket@transpheric.com', 'Ticket transpheric');                 //direccion del remitente
-    $mail->addAddress($mai_per, $nom_per);                                          //direccion y nombre del correo receptor
-    $mail->addAddress($mai_tec, $nom_tec);                                          //direccion y nombre del correo receptor
-    $mail->addReplyTo($mai_tec, $nom_tec);                                          //responder a
-    $mail->isHTML(true);                                                            //definir el formato comoHTML
-    $mail->Subject = "SOLICITUD DE CIERRE: ". $tit_tic." - "."FOLIO:"." ".$r->ticket_id;   //asunto
+    $mail->setFrom('ticket@transpheric.com', 'Ticket transpheric');     //direccion del remitente
+    $mail->addAddress($mai_per, $nom_per);                              //direccion y nombre del correo receptor
+    $mail->addAddress($mai_tec, $nom_tec);                              //direccion y nombre del correo receptor
+    $mail->addReplyTo($mai_tec, $nom_tec);                              //responder a
+    $mail->isHTML(true);                                                //definir el formato comoHTML
+    $mail->Subject = "SOLICITUD DE CIERRE: ". $tit_tic." - "."FOLIO:"." ".$r->id;                             //asunto
     //---------------------------------------Cuerpo del correo------------------------------//
     $mail->Body = $nom_per."
         <br>
@@ -116,7 +82,7 @@ $conexion = mysqli_connect("localhost", "root", "", "soporte");
         <br>
         Estado del ticket: ".$est_tic."
         <br>
-        Folio: ".$r->ticket_id."
+        Folio: ".$r->id."
         <br>
         Creado el:"." ".$fec_tic."
         <br>
@@ -128,7 +94,7 @@ $conexion = mysqli_connect("localhost", "root", "", "soporte");
         ."Registrado el:"." ".$fec_his."
          <br>
          <br>
-         Para cerrar el ticket has click <a href='http://transpheric.sytes.net:81/soporte/index?view=closeticketuser&id=".$r->ticket_id."'>aqui</a>
+         Para cerrar el ticket has click <a href='http://transpheric.sytes.net:81/soporte/index?view=closeticketuser&id=".$r->id."'>aqui</a>
          <br>
          <br>
         <br>
@@ -138,7 +104,7 @@ $conexion = mysqli_connect("localhost", "root", "", "soporte");
     $mail->IsHTML(true);
 
         if (!$mail->send()) {
-            echo 'correo no enviado regresar al <a href="./" >inicio</a>';                           //De no poderse enviar imprimimos que no se pudo enviar
+            echo 'correo no enviado';                           //De no poderse enviar imprimimos que no se pudo enviar
 } else {
 //ALERTA DE QUE SE AGREGO EL TICKET
 Core::alert("¡Agregado exitosamente!");
