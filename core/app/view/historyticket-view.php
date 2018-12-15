@@ -27,7 +27,7 @@ RIGHT OUTER JOIN user     u ON u.id = t.user_id
 RIGHT OUTER JOIN person	  p ON p.id = t.person_id
 RIGHT OUTER JOIN status	  s ON s.id = t.status_id
 RIGHT OUTER JOIN category c ON c.id = t.category_id
-WHERE h.ticket_id = $reservation->id
+WHERE t.id = $reservation->id
 ORDER BY h.created_at DESC";
                         $resultado2 = mysqli_query($conexion, $sql2);
                         $mostrar2 = mysqli_fetch_array($resultado2)
