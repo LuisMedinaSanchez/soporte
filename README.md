@@ -1,4 +1,4 @@
-# Supportix
+# Soporte Transpheric
 Sistema de Tickets de Soporte
 
-### Powered by Evilnapsis
+### Powered by Luis Medina
